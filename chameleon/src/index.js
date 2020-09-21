@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Chameloen from './Chameloen';
+// import Chameloen from './Chameloen';
+import GithubUser from './GithubUser';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Chameloen />
+    <GithubUser />
   </React.StrictMode>,
   document.getElementById('root')
 );

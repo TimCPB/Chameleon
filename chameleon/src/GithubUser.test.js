@@ -1,11 +1,18 @@
 import React from 'react'
 import { render, screen, waitForElement } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom/extend-expect'
 
 import GithubUser from './GithubUser'
+import mockResponse from './__mocks__/Github-response.json'
 
-test("Renders the component", () => {
+jest.spyOn(global, "fetch").mockImplementation(() => {
+  return Promise.resolve({
+    json: () => Promise.resolve(mockResponse)
+  })
+})
+
+test("Renders the GitHub username", async () => {
   render(<GithubUser />)
-  const element = screen.getByText(/Hello, world!/)
+  const element = await waitForElement(() => screen.getByText(/Tim/))
   expect(element).toBeInTheDocument()
 })

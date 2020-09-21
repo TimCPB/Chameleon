@@ -1,5 +1,6 @@
 import React from 'react'
 import { render, screen, waitForElement } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect';
 
 import GithubUser from './GithubUser'
 

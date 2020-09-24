@@ -10,7 +10,11 @@ class GithubUser extends Component {
     }
   }
 
+  
+
   componentDidMount() {
+    const API_KEY = process.env.REACT_APP_API_KEY
+    console.log(process.env.REACT_APP_API_KEY)
     const options = {
       "headers": {
         "Authorization": "token e342e8b99859317b11c80ee1bff5ecab43d3bcd6",

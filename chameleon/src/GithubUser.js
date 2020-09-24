@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import parse from 'html-react-parser'
+import ReactMarkdown from 'react-markdown'
 
 class GithubUser extends Component {
   constructor(props) {
@@ -12,22 +14,23 @@ class GithubUser extends Component {
     const options = {
       "headers": {
         "Authorization": "token e342e8b99859317b11c80ee1bff5ecab43d3bcd6",
-        "Accept": "application/vnd.github.v3+json"
+        "Accept": "application/vnd.github.v3.+json"
       }
     }
-    fetch("https://api.github.com/users/TimCPB", options)
+    fetch("https://api.github.com/repos/TimCPB/Nah-Mazon/readme", options)
       .then(response => response.json())
       .then(data => {
-        var htmlz = 
-        this.setState({gitHubData: data})
+        var htmlz = atob(data.content)
+        var htmlzz = parse(htmlz)
+        var htmlzzz = htmlzz.join(' ')
+        this.setState({gitHubData: htmlzzz})
       })
   }
 
   render() {
     return (
       <div className="User">
-        {this.state.gitHubData.name}
-        <p><img src={this.state.gitHubData.avatar_url} alt="profile" /></p>
+        <ReactMarkdown source={this.state.gitHubData} />
       </div>
     )
   }

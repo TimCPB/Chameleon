@@ -4,28 +4,30 @@ class GithubUser extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      gitHubName: ''
+      gitHubData: ''
     }
   }
 
   componentDidMount() {
     const options = {
       "headers": {
-        "Authorization": "token f24de91b4b4b111558052b4ac7a09b05a499c15d",
+        "Authorization": "token e342e8b99859317b11c80ee1bff5ecab43d3bcd6",
         "Accept": "application/vnd.github.v3+json"
       }
     }
     fetch("https://api.github.com/users/TimCPB", options)
       .then(response => response.json())
       .then(data => {
-        this.setState({gitHubName: data.name})
+        var htmlz = 
+        this.setState({gitHubData: data})
       })
   }
 
   render() {
     return (
       <div className="User">
-        {this.state.gitHubName}
+        {this.state.gitHubData.name}
+        <p><img src={this.state.gitHubData.avatar_url} alt="profile" /></p>
       </div>
     )
   }
